@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+
+require('commander')
+    .version(require('../package.json').version)
+    .command('init-pkg [name]', '初始化一个mgjs体系下的package，默认包含了模块化构建流、开源协议声明、作者信息、npm包信息、github地址信息等')
+    .parse(process.argv);

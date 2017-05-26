@@ -1,0 +1,5 @@
+node_modules
+src
+.eslintignore
+.travis.yml
+.eslintrc.js

@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+
+var path = require('path');
+var fs = require('fs');
+
+var program = require('commander');
+var chalk = require('chalk');
+var inquirer = require('inquirer');
+
+program
+    .usage('<package-name>')
+    .parse(process.argv);
+
+program.on('--help', function () {
+    console.log('  示例：')
+    console.log()
+    console.log(chalk.gray('    # 创建一个mgjs体系下的package'))
+    console.log('    $ mg init-pkg package-name')
+    console.log()
+})
+
+
+var curPath = path.resolve('.'),
+    pathName = path.basename(curPath),
+    pkgName = program.args && program.args.length > 0 ? program.args[0] : pathName;
+
+if (!program.args || program.args.length == 0) {
+    inquirer.prompt([{
+        type: 'confirm',
+        message: '是否在当前文件夹生成package？',
+        name: 'ok'
+    }]).then(function (answers) {
+        if (answers.ok) {
+            run();
+        }
+    }).catch(function () {
+        console.error('发生错误1！退出程序.');
+        process.exit(1);
+    });
+} else if (fs.existsSync(path.join(curPath, '/' + pkgName))) {
+    inquirer.prompt([{
+        type: 'confirm',
+        message: '文件夹' + pkgName + '已存在，是否覆盖生成package？',
+        name: 'ok'
+    }]).then(function (answers) {
+        if (answers.ok) {
+            run();
+        }
+    }).catch(function () {
+        console.error('发生错误2！退出程序.');
+        process.exit(1);
+    });
+} else {
+    run();
+}
+
+function run() {
+    console.log('create a package [' + pkgName + '] end.');
+}
