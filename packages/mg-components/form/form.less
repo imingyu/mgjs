@@ -1,0 +1,77 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+@clr-border:#ededed;
+@clr-control:#000;
+@clr-control-border:@clr-border;
+@clr-control-bg:#fff;
+@clr-item-border:@clr-border;
+
+
+.form-control{
+    display: inline-block;
+    height: 34px;
+    border-radius: 0;
+    border:1px solid @clr-control-border;
+    background: @clr-control-bg;
+    font-size: 14px;
+    color: @clr-control;
+    padding: 6px 12px;
+    line-height: 1.1;
+}
+.form-control:after{
+    content: '**';
+    display: inline-block;
+    color: red;
+}
+.form-control:focus,
+.form-control:active{
+    box-shadow: none;
+    outline: none;
+}
+.form-group{
+    display: table;
+    width:100%;
+}
+.form-item{
+    display: table-row;
+    width: 100%;
+}
+.form-item>.form-label{
+    width: 1%;
+    padding: 6px 10px 6px 0;
+}
+.form-item>.form-control,
+.form-item>.form-control-container>.form-control,
+.form-item>.form-static{
+    border:none;
+    width: 100%;
+}
+.form-item>.form-control-container>.form-control{
+    display: block;
+}
+.form-item>.form-static{
+    text-align: right;
+}
+.form-item>.form-label,
+.form-item>.form-control,
+.form-item>.form-control-container,
+.form-item>.form-static{
+    display: table-cell;
+    white-space: nowrap;
+    border-top:1px solid @clr-item-border;
+    vertical-align: middle;
+}
+.form-group>.form-item:last-child>.form-label,
+.form-group>.form-item:last-child>.form-control,
+.form-group>.form-item:last-child>.form-control-container,
+.form-group>.form-item:last-child>.form-static,
+.form-group>.form-item-last>.form-label,
+.form-group>.form-item-last>.form-control,
+.form-group>.form-item-last>.form-control-container,
+.form-group>.form-item-last>.form-static{
+    border-bottom: 1px solid @clr-item-border;
+}
